@@ -1,0 +1,24 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="Project.Master" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>RWA Projekt</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="navigation" runat="server">
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="Default.aspx" class="navbar-brand">Početna</a>
+            <a href="Bills.aspx" class="navbar-brand">Računi</a>
+        </nav>
+        <div class="container">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
