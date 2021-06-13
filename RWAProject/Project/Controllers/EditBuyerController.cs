@@ -1,4 +1,5 @@
 ﻿using Project.Models;
+using Project.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,25 @@ namespace Project.Controllers
         // GET: EditBuyer
         public ActionResult Edit(int id)
         {
-            ViewBag.cities = Repo.GetCities(Repo.GetCountryID(id));
-            return View(Repo.GetBuyer(id));
+            int countryID = Repo.GetCountryID(id);
+            int cityID = Repo.GetCityID(id);
+            ViewBag.countries = Repo.GetCountries();
+            ViewBag.cities = Repo.GetCities(countryID);
+            Buyer buyer = Repo.GetBuyer(id);
+            var model = new EditBuyerVM
+            {
+                IDBuyer = buyer.IDBuyer,
+                FirstName = buyer.FirstName,
+                LastName = buyer.LastName,
+                Email = buyer.Email,
+                CityName = buyer.CityName,
+                CountryName = buyer.CountryName,
+                Countries = ViewBag.countries,
+                Cities = ViewBag.cities,
+                IDCountry = countryID,
+                IDCity = cityID
+            };
+            return View(model);
         }
     }
 }

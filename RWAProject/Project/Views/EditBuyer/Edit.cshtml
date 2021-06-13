@@ -1,9 +1,11 @@
 ﻿@using Project.Models
 @using Project.Models.CustomHelpers
-@model Project.Models.Buyer
+@model Project.Models.ViewModels.EditBuyerVM
 
 @{
     ViewBag.Title = "Uređivanje";
+    SelectList ddlCountries = new SelectList(items: Model.Countries, dataTextField: "Name", dataValueField: "IDCountry");
+    SelectList ddlCities = new SelectList(items: Model.Cities, dataTextField: "Name", dataValueField: "IDCity");
 }
 
 <h2>@ViewBag.Title</h2>
@@ -13,58 +15,60 @@
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.IDBuyer)
-    
-<div class="form-horizontal">
-    <h4>Kupac @Model.FirstName @Model.LastName</h4>
-    <hr />
-    @Html.ValidationSummary(false, "Greške", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.FirstName, "*", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>Kupac @Model.FirstName @Model.LastName</h4>
+        <hr />
+        @Html.ValidationSummary(false, "Greške", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "*", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "*", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "*", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "control-label col-md-2", id = "countryForm" })
+            <div class="col-md-10">
+                @Html.DropDownList(optionLabel: "--- odaberi ---", selectList: ddlCountries,
+               name: "IDCountry", htmlAttributes: new { @class = "form-control", id = "IDCountry" })
+                @Html.ValidationMessageFor(model => model.CountryName, "*", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-2", id = "cityForm" })
+            <div class="col-md-10">
+                @Html.DropDownList(optionLabel: "--- odaberi ---", selectList: ddlCities,
+               name: "IDCity", htmlAttributes: new { @class = "form-control", id = "IDCity" })
+                @Html.ValidationMessageFor(model => model.CityName, "*", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.LastName, "*", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Email, "*", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CountryName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CountryName, "*", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.RenderDdlCities((IEnumerable<City>)ViewBag.cities)
-            @Html.ValidationMessageFor(model => model.CityName, "*", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>
@@ -73,4 +77,17 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $('#IDCountry').change(e => {
+            $('#countryForm').submit();
+
+        });
+        $('#IDCity').change(e => {
+            if (e.target.value !== '') {
+                $('#cityForm').submit();
+            } else {
+            }
+        });
+    </script>
 }

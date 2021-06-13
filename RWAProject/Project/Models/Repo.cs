@@ -34,6 +34,13 @@ namespace Project.Models
             return countryID;
         }
 
+        public static int GetCityID(int buyerID)
+        {
+            var row = SqlHelper.ExecuteDataset(cs, "GetCityID", buyerID).Tables[0].Rows[0];
+            int cityID = (int)row["GradID"];
+            return cityID;
+        }
+
         public static IEnumerable<City> GetCities(int countryID)
         {
             var tblCities = SqlHelper.ExecuteDataset(cs, "GetCities", countryID).Tables[0];

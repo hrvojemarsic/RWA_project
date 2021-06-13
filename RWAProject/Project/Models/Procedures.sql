@@ -13,6 +13,14 @@ select d.IDDrzava
 	where k.IDKupac = @buyerID
 go
 
+create proc GetCityID
+	@buyerID int
+as
+select GradID
+	from Kupac
+	where IDKupac = @buyerID
+go
+
 create proc GetCities
 	@countryID int
 as
