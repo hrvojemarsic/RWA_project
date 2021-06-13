@@ -155,6 +155,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\CustomHelpers\CityCustomHelper.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Repo.cs" />
     <Compile Include="Models\Subcategory.cs" />
@@ -166,6 +167,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Validation.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

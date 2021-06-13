@@ -24,6 +24,7 @@ namespace Project
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Validation.css",
                       "~/Content/site.css"));
         }
     }

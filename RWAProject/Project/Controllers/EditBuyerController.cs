@@ -12,8 +12,8 @@ namespace Project.Controllers
         // GET: EditBuyer
         public ActionResult Edit(int id)
         {
-            var model = Repo.GetBuyer(id);
-            return View(model);
+            ViewBag.cities = Repo.GetCities(Repo.GetCountryID(id));
+            return View(Repo.GetBuyer(id));
         }
     }
 }

@@ -3,6 +3,16 @@ as
 	select * from Drzava
 go
 
+create proc GetCountryID
+	@buyerID int
+as
+select d.IDDrzava
+	from Kupac as k
+	inner join Grad as g on g.IDGrad = k.GradID
+	inner join Drzava as d on d.IDDrzava = g.DrzavaID
+	where k.IDKupac = @buyerID
+go
+
 create proc GetCities
 	@countryID int
 as

@@ -25,6 +25,15 @@ namespace Project.Models
                 };
             }
         }
+
+        public static int GetCountryID(int buyerID)
+        {
+            // int countryID = SqlHelper.ExecuteNonQuery(cs, "GetCountryID", buyerID); zašto ovo vraća za id "-1" a ne id koji bi triba ka ovo doli?
+            var row = SqlHelper.ExecuteDataset(cs, "GetCountryID", buyerID).Tables[0].Rows[0];
+            int countryID = (int)row["IDDrzava"];
+            return countryID;
+        }
+
         public static IEnumerable<City> GetCities(int countryID)
         {
             var tblCities = SqlHelper.ExecuteDataset(cs, "GetCities", countryID).Tables[0];
