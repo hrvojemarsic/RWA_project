@@ -10,9 +10,9 @@ namespace Project.Controllers
     public class EditBuyerController : Controller
     {
         // GET: EditBuyer
-        public ActionResult Edit(string buyerID)
+        public ActionResult Edit(int id)
         {
-            var model = Repo.GetBuyer(int.Parse(buyerID));
+            var model = Repo.GetBuyer(id);
             return View(model);
         }
     }

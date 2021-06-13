@@ -85,8 +85,15 @@ namespace Project
         protected void lbEditBuyer_Click(object sender, EventArgs e)
         {
             LinkButton button = (LinkButton)sender;
-            int buyerID = int.Parse(button.CommandArgument);
-            Response.Redirect($"~/EditBuyer/Edit/{buyerID}");
+            try
+            {
+                int buyerID = int.Parse(button.CommandArgument);
+                Response.Redirect($"~/EditBuyer/Edit/{buyerID}");
+            }
+            catch (Exception ex)
+            {
+                lblInfo.Text = ex.Message;
+            }
         }
 
         /* prikaz svih računa */
