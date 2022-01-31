@@ -5,7 +5,6 @@
 @{
     ViewBag.Title = "Uređivanje";
     SelectList ddlCountries = new SelectList(items: Model.Countries, dataTextField: "Name", dataValueField: "IDCountry");
-    SelectList ddlCities = new SelectList(items: Model.Cities, dataTextField: "Name", dataValueField: "IDCity");
 }
 
 <h2>@ViewBag.Title</h2>
@@ -46,7 +45,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "control-label col-md-2", id = "countryForm" })
+            @Html.LabelFor(model => model.CountryName, 
+           htmlAttributes: new { 
+               @class = "control-label col-md-2", 
+               id = "countryForm",
+               data_id = Model.IDCountry
+           })
             <div class="col-md-10">
                 @Html.DropDownList(optionLabel: "--- odaberi ---", selectList: ddlCountries,
                name: "IDCountry", htmlAttributes: new { @class = "form-control", id = "IDCountry" })
@@ -57,37 +61,33 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-2", id = "cityForm" })
             <div class="col-md-10">
-                @Html.DropDownList(optionLabel: "--- odaberi ---", selectList: ddlCities,
-               name: "IDCity", htmlAttributes: new { @class = "form-control", id = "IDCity" })
+                @Html.Partial(partialViewName:"_DdlCities", model: (int)ViewBag.countryID)
                 @Html.ValidationMessageFor(model => model.CityName, "*", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Spremi" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <p><a href="~/Bills.aspx" class="btn btn-default btn-sm"> <<< Povratak na popis kupaca</a></p>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        $('#IDCountry').change(e => {
-            $('#countryForm').submit();
-
-        });
-        $('#IDCity').change(e => {
-            if (e.target.value !== '') {
-                $('#cityForm').submit();
-            } else {
-            }
-        });
+        $('#IDCountry').on('change', function (e) {
+            const id = this.dataset;
+            $.ajax({
+                url: '@Html.Partial(partialViewName:"_DdlCities")',
+                data: { id }
+            })
+        )}
     </script>
-}
+}*@

@@ -11,6 +11,14 @@ namespace Project.Models
     public class Repo
     {
         private static string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
+        private static string cs_project = ConfigurationManager.ConnectionStrings["cs_project"].ConnectionString;
+
+        public int CreateUser(string userName, string email, string userPass)
+            => SqlHelper.ExecuteNonQuery(cs_project, "CreateUser", email, userName, userPass);
+
+        public bool CheckUser(string email, string userPass)
+            //=> SqlHelper.ExecuteNonQuery(cs_project, "CheckUser", email, userPass) == 1;
+            => Convert.ToInt32(SqlHelper.ExecuteScalar(cs_project, "CheckUser", email, userPass)) == 1;
 
         public static IEnumerable<Country> GetCountries()
         {

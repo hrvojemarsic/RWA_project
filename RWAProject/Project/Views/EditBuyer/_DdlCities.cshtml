@@ -1,0 +1,12 @@
+﻿@using Project.Models
+@model int
+
+@{
+    var cities = Repo.GetCities(Model);
+    SelectList ddlCities = new SelectList(items: cities, dataTextField: "Name", dataValueField: "IDCity");
+}
+
+@Html.DropDownList(optionLabel: "--- odaberi ---", selectList: ddlCities,
+               name: "IDCity", htmlAttributes: new { @class = "form-control", id = "IDCity" })
+
+

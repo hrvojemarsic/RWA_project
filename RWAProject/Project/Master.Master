@@ -14,6 +14,7 @@
         <nav class="navbar navbar-dark bg-dark">
             <a href="Default.aspx" class="navbar-brand">Početna</a>
             <a href="Bills.aspx" class="navbar-brand">Računi</a>
+            <a href="/EditBuyer/Index" class="navbar-brand">Kupci</a>
         </nav>
         <div class="container">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

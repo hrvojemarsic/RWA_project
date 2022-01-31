@@ -1,4 +1,57 @@
-﻿create proc GetCountries
+﻿create database RWAProject	
+go
+use RWAProject
+go
+
+create table UserRWA 
+(
+	IDUserRWA int primary key identity,
+	Email nvarchar(100),
+	UserName nvarchar(20),
+	UserPass nvarchar(20)
+)
+go
+
+create proc CreateUser
+	@Email nvarchar(100),
+	@UserName nvarchar(20),
+	@UserPass nvarchar(20)
+as
+begin
+	set nocount on
+	if exists(select IDUserRWA from UserRWA where Email = @Email)
+	begin
+		select 0
+	end
+	else
+	begin
+		insert into UserRwa values(@Email, @UserName, @UserPass)
+		select SCOPE_IDENTITY()
+	end
+end
+go
+
+create proc CheckUser
+	@Email nvarchar(100),
+	@UserPass nvarchar(20)
+as
+begin
+	set nocount on
+	if exists (select IDUserRWA from UserRWA where Email = @Email and UserPass = @UserPass)
+	begin
+		select 1
+	end
+	else
+	begin
+		select 0
+	end
+end
+go
+
+use AdventureWorksOBP
+go
+
+create proc GetCountries
 as
 	select * from Drzava
 go
