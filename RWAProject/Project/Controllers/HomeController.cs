@@ -10,7 +10,12 @@ namespace Project.Controllers
     {
         public ActionResult Index()
         {
-            return Redirect("Register.aspx");
+            return Redirect("~/Bills.aspx");
+        }
+
+        public ActionResult Default()
+        {
+            return Redirect("~/Default.aspx");
         }
 
     }
