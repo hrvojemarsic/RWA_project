@@ -1,0 +1,42 @@
+﻿@model Project.Models.Subcategory
+
+@{
+    ViewBag.Title = "Detalji potkategorije";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Subcategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            ID Potkategorije
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDSubcategory)
+        </dd>
+
+        <dt>
+            Naziv potkategorije
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            ID Kategorije
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("<<< Povratak na listu potkategorija", "Show")
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.IDSubcategory }, new { @class = "btn btn-primary btn-sm" })
+</p>

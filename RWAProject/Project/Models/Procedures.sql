@@ -125,6 +125,20 @@ as
 	order by k.IDKupac
 go
 
+create proc UpdateBuyer
+	@IDBuyer int,
+	@FirstName nvarchar(50),
+	@LastName nvarchar(50),
+	@Email nvarchar(50),
+	@Tel nvarchar(25),
+	@CityID int
+as
+begin
+	update Kupac set Ime = @FirstName, Prezime = @LastName, Email = @Email, Telefon = @Tel, GradID = @CityID
+	where IDKupac = @IDBuyer
+end
+go
+
 create proc GetBillsByBuyer
 	@buyerID int
 as
@@ -142,4 +156,177 @@ as
 	inner join Potkategorija as pk on pk.IDPotkategorija = p.PotkategorijaID
 	inner join Kategorija as k on k.IDKategorija = pk.KategorijaID
 	where r.IDRacun = @IDBill
+go
+
+create proc GetCategories
+as
+	select * from Kategorija
+go
+
+create proc GetCategory
+	@IDCategory int
+as
+	select * from Kategorija where IDKategorija = @IDCategory
+go
+
+create proc CreateCategory
+	@Name nvarchar(50)
+as
+	insert into Kategorija values (@Name)
+go
+
+create proc UpdateCategory
+	@IDCategory int,
+	@Name nvarchar(50)
+as
+begin
+	update Kategorija set Naziv = @Name
+	where IDKategorija = @IDCategory
+end
+go
+
+create proc DeleteCategory
+	@IDCategory int
+as
+begin
+	delete from Kategorija
+	where IDKategorija = @IDCategory
+end
+go
+
+create proc GetSubCategories
+as
+	select * from Potkategorija
+go
+
+create proc GetSubCategory
+	@IDSubCategory int
+as
+begin
+	select * from Potkategorija
+	where IDPotkategorija = @IDSubCategory
+end
+go
+
+create proc CreateSubCategory
+	@categoryID int,
+	@name nvarchar(50)
+as
+begin
+	insert into Potkategorija values (@categoryID, @name)
+end
+go
+
+create proc UpdateSubCategory
+	@IDSubCategory int,
+	@categoryID int,
+	@name nvarchar(50)
+as
+begin
+	update Potkategorija
+	set KategorijaID = @categoryID, Naziv = @name
+	where  IDPotkategorija = @IDSubCategory
+end
+go
+
+create proc DeleteSubCategory
+	@IDSubCategory int
+as
+begin
+	delete from Potkategorija
+	where IDPotkategorija = @IDSubCategory
+end
+go
+
+create proc GetProducts
+as
+begin
+	select * from Proizvod
+end
+go
+
+create proc GetProduct
+	@IDProduct int
+as
+begin
+	select * from Proizvod
+	where IDProizvod = @IDProduct
+end
+go
+
+create proc CreateProduct
+	@Name nvarchar(50),
+	@ProductNumber nvarchar(25),
+	@Color nvarchar(15),
+	@MinQuantityAtLager smallint,
+	@PriceWithoutPDV money,
+	@SubcategoryID int
+as
+begin
+	insert into Proizvod
+	values (@Name, @ProductNumber, @Color, @MinQuantityAtLager, @PriceWithoutPDV, @SubcategoryID)
+end
+go
+
+create proc UpdateProduct
+	@IDProduct int,
+	@Name nvarchar(50),
+	@ProductNumber nvarchar(25),
+	@Color nvarchar(15),
+	@MinQuantityAtLager smallint,
+	@PriceWithoutPDV money,
+	@SubcategoryID int
+as
+begin
+	update Proizvod
+	set Naziv = @Name, BrojProizvoda = @ProductNumber, Boja = @Color, MinimalnaKolicinaNaSkladistu = @MinQuantityAtLager, CijenaBezPDV = @PriceWithoutPDV, PotkategorijaID = @SubcategoryID
+	where IDProizvod = @IDProduct
+end
+go
+
+create proc DeleteProduct
+	@IDProduct int
+as
+begin
+	delete from Proizvod
+	where IDProizvod = @IDProduct
+end
+go
+
+create proc GetKupci
+as
+begin
+	select * from Kupac
+end
+go
+
+create proc GetKupac
+	@IDBuyer int
+as
+begin
+	select * from Kupac
+	where IDKupac = @IDBuyer
+end
+go
+
+create proc InsertKupac
+	@FirstName nvarchar(50),
+	@LastName nvarchar(50),
+	@Email nvarchar(50),
+	@Tel nvarchar(25),
+	@CityID int
+as
+begin
+	insert into Kupac
+	values (@FirstName, @LastName, @Email, @Tel, @CityID)
+end
+go
+
+create proc DeleteKupac
+	@IDBuyer int
+as
+begin
+	delete from Kupac
+	where IDKupac = @IDBuyer
+end
 go

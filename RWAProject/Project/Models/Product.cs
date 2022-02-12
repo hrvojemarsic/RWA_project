@@ -26,10 +26,9 @@ namespace Project.Models
         public int MinQuantityAtLager { get; set; }
 
         [Required(ErrorMessage = "Obavezno je postaviti cijenu proizvoda")]
-        [Range(0, 1.7976931348623157E+308, ErrorMessage = "Cijena mora biti pozitivan broj")]
+        [Range(0, 999999999.99, ErrorMessage = "Cijena mora biti pozitivan broj")]
         public double PriceWithoutPDV { get; set; }
 
-        [Required(ErrorMessage = "Odaberite potkategoriju")]
         public int SubcategoryID { get; set; }
     }
 }

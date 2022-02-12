@@ -1,0 +1,67 @@
+﻿@model Project.Models.Product
+
+@{
+    ViewBag.Title = "Detalji proizvoda";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Proizvod</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Naziv proizvoda
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Broj proizvoda
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductNumber)
+        </dd>
+
+        <dt>
+            Boja proizvoda
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            Minimalna količina na skladištu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinQuantityAtLager)
+        </dd>
+
+        <dt>
+            Cijena (bez PDV-a)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceWithoutPDV)
+        </dd>
+
+        <dt>
+            Potkategorija ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubcategoryID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("<<< Povratak na listu proizvoda", "Show")
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.IDProduct }, new { @class = "btn btn-primary btn-sm" })
+</p>

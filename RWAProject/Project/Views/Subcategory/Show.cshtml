@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Project.Models.Subcategory>
+
+@{
+    ViewBag.Title = "Prikaz potkategorija";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.AntiForgeryToken()
+
+<p>
+    @Html.ActionLink("Kreiraj novu potkategoriju", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(modelItem => item.IDSubcategory)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDSubcategory }, new { @class = "btn btn-primary btn-sm" })
+                @Html.ActionLink("Details", "Details", new { id = item.IDSubcategory }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDSubcategory }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>

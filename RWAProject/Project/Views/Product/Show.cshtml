@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Project.Models.Product>
+
+@{
+    ViewBag.Title = "Prikaz proizvoda";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.AntiForgeryToken()
+
+<p>
+    @Html.ActionLink("Kreiraj novi proizvod", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinQuantityAtLager)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceWithoutPDV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubcategoryID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(modelItem => item.IDProduct)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinQuantityAtLager)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceWithoutPDV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubcategoryID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.IDProduct }, new { @class = "btn btn-primary btn-sm" })
+                @Html.ActionLink("Details", "Details", new { id = item.IDProduct }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDProduct }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>RWA Projekt</title>
+    <title>RWA Project</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
@@ -15,6 +15,9 @@
             <a href="Default.aspx" class="navbar-brand">Početna</a>
             <a href="Bills.aspx" class="navbar-brand">Računi</a>
             <a href="/EditBuyer/Index" class="navbar-brand">Kupci</a>
+            <a href="/Category/Show" class="navbar-brand">Kategorije</a>
+            <a href="/Subcategory/Show" class="navbar-brand">Potkategorije</a>
+            <a href="/Product/Show" class="navbar-brand">Proizvodi</a>
         </nav>
         <div class="container">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

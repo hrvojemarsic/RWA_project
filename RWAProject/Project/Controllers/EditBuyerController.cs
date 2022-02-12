@@ -17,6 +17,7 @@ namespace Project.Controllers
         }
 
         // GET: EditBuyer/1
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             int countryID = Repo.GetCountryID(id);
@@ -39,6 +40,20 @@ namespace Project.Controllers
                 IDCity = cityID
             };
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditBuyerVM b)
+        {
+            try
+            {
+                Repo.UpdateKupac(b.IDBuyer, b.FirstName, b.LastName, b.Email, "000", b.IDCity);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return Redirect("~/Error/BadRequest");
+            }
         }
     }
 }

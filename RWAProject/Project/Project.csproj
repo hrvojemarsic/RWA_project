@@ -140,9 +140,13 @@
     <Compile Include="Bills.aspx.designer.cs">
       <DependentUpon>Bills.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BuyersController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\EditBuyerController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SubcategoryController.cs" />
     <Compile Include="Controls\LoginControl.ascx.cs">
       <DependentUpon>LoginControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,6 +188,7 @@
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\BillDetail.cs" />
     <Compile Include="Models\Buyer.cs" />
+    <Compile Include="Models\BuyerDB.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
@@ -251,6 +256,18 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServiceUnavailable.cshtml" />
     <Content Include="Views\EditBuyer\Index.cshtml" />
+    <Content Include="Views\Category\Show.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Subcategory\Show.cshtml" />
+    <Content Include="Views\Subcategory\Edit.cshtml" />
+    <Content Include="Views\Subcategory\Details.cshtml" />
+    <Content Include="Views\Subcategory\Create.cshtml" />
+    <Content Include="Views\Product\Show.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
